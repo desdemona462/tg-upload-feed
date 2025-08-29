@@ -73,7 +73,7 @@ async def extract_and_broadcast(message: Message, *, echo_back=False) -> None:
                 f">**Powered by:** @CharuAIbot"
         )
         if is_new_content(content_name) and not echo_back:  # Only if not received via PM and new content
-
+            add_content(content_name)
             # 1️⃣  Post to mandatory channel
             await app.send_photo(
                 chat_id=TARGET_CHANNEL_ID,
@@ -90,7 +90,6 @@ async def extract_and_broadcast(message: Message, *, echo_back=False) -> None:
                     caption=caption,
                     parse_mode=ParseMode.DEFAULT
                 )
-            add_content(content_name)
             logger.info("Thumbnail extracted and sent successfully to TG. Also added to DB.")
    
         # 3️⃣  Echo back to sender (only for private handler)
